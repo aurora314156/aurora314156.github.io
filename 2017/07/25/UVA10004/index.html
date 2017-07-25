@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>UVA10004 | Aurora&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Algorithm,UVA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UVA10004">
+<meta property="og:url" content="http://yoursite.com/2017/07/25/UVA10004/index.html">
+<meta property="og:site_name" content="Aurora&#39;s Blog">
+<meta property="og:updated_time" content="2017-07-25T06:16:32.231Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UVA10004">
+  
+    <link rel="alternate" href="/atom.xml" title="Aurora&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Aurora&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-UVA10004" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/25/UVA10004/" class="article-date">
+  <time datetime="2017-07-25T05:06:01.000Z" itemprop="datePublished">2017-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/UVA/">UVA</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      UVA10004
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> <br> <br> <br></p>
+<a id="more"></a>
+<pre><code>/*DFS , bipartite graph*/
+
+
+
+
+
+
+#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+using namespace std;
+#define size 205
+int matrix[size][size];
+int color[size];
+int n = 0;
+
+int dfs(int start) {
+
+ for (int end= 0; end &lt; n; end++)
+ {
+  //matirx[start][end] = 1 , means start vertex and end vertex was connected
+  if (matrix[start][end])
+  {
+   //if end vertex hasn&apos;t be check, then drew color and keep going next adjacent vertex
+   if (!color[end]) {
+    color[end] = !color[start];
+    dfs(end);
+   }
+
+  // based on end vertex has been check before
+  // start vertex and end vertex color have the same color, means color already repeat ,so cant be drew correct
+   else if (color[start] == color[end])
+    return 0;
+  }
+ }
+ return 1;
+}
+
+int main(void) {
+
+ while (1)
+ {
+  int l = 0,row=0,col=0;
+  cin &gt;&gt; n;
+
+  if (n == 0)break;
+  cin &gt;&gt; l;
+
+  memset(matrix, 0, sizeof(matrix));
+  memset(color, 0, sizeof(color));
+    /*
+  1: connected and colored
+  0: disconncted and uncolored
+ */
+  for (int i = 0; i &lt; l; i++)
+  {
+   cin &gt;&gt; row &gt;&gt; col;
+   matrix[row][col] = matrix[col][row] = 1;
+  }
+  color[0] = 1;
+  if (dfs(0))
+  cout&lt;&lt;&quot;BICOLORABLE.&quot; &lt;&lt;endl;
+  else
+  cout &lt;&lt; &quot;NOT BICOLORABLE.&quot;&lt;&lt; endl;
+
+ }
+
+}
+</code></pre><p><br></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/25/UVA10004/" data-id="cj5j7fcq2000v70icrktm2aku" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UVA/">UVA</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/25/UVA10296/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          UVA10296
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/25/UVA11547/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">UVA11547</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Leetcode/">Leetcode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UVA/">UVA</a><span class="category-list-count">80</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZeroJudge/">ZeroJudge</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/25/UVA673/">UVA673</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/25/UVA11368/">UVA11368</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/25/Leetcode-4/">Leetcode#4</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/25/UVA10079/">UVA10079</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/25/UVA483/">UVA483</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">88</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/">Other</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UVA/">UVA</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroJudge/">ZeroJudge</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      
+<footer id="footer">
+ <div class="outer">
+    <div id="footer-info" class="inner" style="text-align:left;">
+	  <table width="100%" border="0">
+        <tr>
+		<td style="text-align:left">	
+		   <div style="font-family: FontAwesome;font-size: 28px;">
+		   <a href="https://github.com/aurora314156" title="GitHub" target="_blank">&#61595;</a>&nbsp;
+		    <a class="fa fa-home" href="https://www.facebook.com/chengxuan.wu2" title="Facebook" target="_blank">&#62000;</a>&nbsp;
+			<a href="http://zzxx852852.blogspot.tw/" title="Google+" target="_blank">&#61653;</a>
+			<a href="http://uhunt.felix-halim.net/id/381764" title="Uva" target="_blank">&#61835;</a>&nbsp;
+			</div>
+		   Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	       ant Theme by <a href="https://github.com/hexojs/hexo-theme-landscape" target="_blank">landscape</a> 
+	       @&nbsp2017 Rick Wu 
+		 </td>
+        </tr>
+      </table>
+    </div>
+</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

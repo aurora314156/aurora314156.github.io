@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Leetcode#15 | Aurora&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Algorithm,Leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode#15">
+<meta property="og:url" content="http://yoursite.com/2017/07/25/Leetcode-15/index.html">
+<meta property="og:site_name" content="Aurora&#39;s Blog">
+<meta property="og:updated_time" content="2017-07-25T06:24:04.098Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode#15">
+  
+    <link rel="alternate" href="/atom.xml" title="Aurora&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Aurora&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Leetcode-15" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/25/Leetcode-15/" class="article-date">
+  <time datetime="2017-07-25T06:19:41.000Z" itemprop="datePublished">2017-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Leetcode/">Leetcode</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Leetcode#15
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> <br> <br> <br></p>
+<a id="more"></a>
+<pre><code>// LeetCode #15
+// Difficulty: Medium
+// For test
+// Time:O(n^2)
+// Space:O(n^2)
+// Stl: SORT, ITERATOR, VECTOR
+
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+int i, j, k, n;
+
+//有點類似排序演算法的作法
+//每一個輪使用一個index先固定一個數 而剩下的陣列內容 分別使用兩個不同的index左右逼近 
+//過程中要注意避開重複的數字
+
+int main() {
+
+    int nums[] = { -1, 0, 1, 2, -1, -4 };
+    //convenient to stores result by using two-dimensional vector
+    vector&lt;vector&lt;int&gt; &gt; res;
+    vector&lt;int&gt; temp;
+    n = sizeof(nums) / sizeof(nums[0]);
+    sort(nums, nums + n);
+
+    for (int i = 0; i &lt; 6; i++) {
+
+        //jump over duplicate
+        if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1])
+            continue;
+        //two indices on each for loop
+        k = n - 1; j = i + 1;
+        while (j &lt; k) {
+            if (nums[i] + nums[j] + nums[k] == 0)
+            {
+                temp.push_back(nums[i]);
+                temp.push_back(nums[j]);
+                temp.push_back(nums[k]);
+                res.push_back(temp);
+                while (j &lt; k &amp;&amp; nums[k] == nums[k - 1])k--;
+                while (j &lt; k &amp;&amp; nums[j] == nums[j + 1])j++;
+                k--; j++;
+                temp.clear();
+            }
+            else if (nums[i] + nums[j] + nums[k] &gt; 0)k--;
+            else j++;
+        }
+    }
+
+    for (int v = 0; v &lt; res.size(); ++v) {
+
+        for (vector&lt;int&gt;::iterator it = res[v].begin(); it != res[v].end(); ++it)
+        {
+            cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+        }
+        cout &lt;&lt; endl;
+    }
+
+    system(&quot;PAUSE&quot;);
+}
+
+
+
+//SOLUTION
+
+class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) {
+        int i, j, k,n = nums.size();
+
+        vector&lt;vector&lt;int&gt; &gt; res;
+        vector&lt;int&gt; temp;
+
+        sort(nums.begin(),nums.begin()+n);
+
+        for (int i = 0; i &lt; n; i++) {
+
+            //jump over duplicate
+            if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1])
+                continue;
+            //two indices on each for loop
+            k = n - 1; j = i + 1;
+            while (j &lt; k) {
+                if (nums[i] + nums[j] + nums[k] == 0)
+                {
+                    temp.push_back(nums[i]);
+                    temp.push_back(nums[j]);
+                    temp.push_back(nums[k]);
+                    res.push_back(temp);
+                    while (j &lt; k &amp;&amp; nums[k] == nums[k - 1])k--;
+                    while (j &lt; k &amp;&amp; nums[j] == nums[j + 1])j++;
+                    k--; j++;
+                    temp.clear();
+                }
+                else if (nums[i] + nums[j] + nums[k] &gt; 0)k--;
+                else j++;
+            }
+        }
+        return res;
+    }
+};
+</code></pre><p><br></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/25/Leetcode-15/" data-id="cj5j7fcoq000a70ic3u1caxtn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/25/UVA483/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          UVA483
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/25/Leetcode-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Leetcode#1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Leetcode/">Leetcode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UVA/">UVA</a><span class="category-list-count">80</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZeroJudge/">ZeroJudge</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/25/UVA673/">UVA673</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/25/UVA11368/">UVA11368</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/25/Leetcode-4/">Leetcode#4</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/25/UVA10079/">UVA10079</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/25/UVA483/">UVA483</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">88</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/">Other</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UVA/">UVA</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroJudge/">ZeroJudge</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      
+<footer id="footer">
+ <div class="outer">
+    <div id="footer-info" class="inner" style="text-align:left;">
+	  <table width="100%" border="0">
+        <tr>
+		<td style="text-align:left">	
+		   <div style="font-family: FontAwesome;font-size: 28px;">
+		   <a href="https://github.com/aurora314156" title="GitHub" target="_blank">&#61595;</a>&nbsp;
+		    <a class="fa fa-home" href="https://www.facebook.com/chengxuan.wu2" title="Facebook" target="_blank">&#62000;</a>&nbsp;
+			<a href="http://zzxx852852.blogspot.tw/" title="Google+" target="_blank">&#61653;</a>
+			<a href="http://uhunt.felix-halim.net/id/381764" title="Uva" target="_blank">&#61835;</a>&nbsp;
+			</div>
+		   Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	       ant Theme by <a href="https://github.com/hexojs/hexo-theme-landscape" target="_blank">landscape</a> 
+	       @&nbsp2017 Rick Wu 
+		 </td>
+        </tr>
+      </table>
+    </div>
+</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
