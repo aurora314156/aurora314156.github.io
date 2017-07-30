@@ -479,7 +479,7 @@ body {
 .search-form-input {
   border: none;
   background: none;
-  color: #bdbdbd;
+  color: #fff;
   width: 100%;
   font: 13px Tahoma, "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei Light", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", sans-serif;
   outline: none;
@@ -540,7 +540,7 @@ body {
   text-decoration: none;
   font-size: 2em;
   font-weight: bold;
-  color: #bdbdbd;
+  color: #fff;
   line-height: 1.1em;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
@@ -551,7 +551,7 @@ a.article-title:hover {
   color: #1a9bf2;
 }
 .article-entry {
-  color: #bdbdbd;
+  color: #fff;
   padding: 0 20px;
 }
 .article-entry:before,
@@ -709,7 +709,7 @@ a.article-title:hover {
   text-decoration: none;
 }
 .article-footer a:hover {
-  color: #bdbdbd;
+  color: #fff;
 }
 .article-tag-list-item {
   float: left;
@@ -778,7 +778,7 @@ a.article-title:hover {
   display: block;
 }
 .article-nav-link-wrap:hover {
-  color: #bdbdbd;
+  color: #fff;
 }
 @media screen and (min-width: 768px) {
   .article-nav-link-wrap {
@@ -837,7 +837,7 @@ a.article-title:hover {
   box-sizing: border-box;
   font: 14px Tahoma, "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei Light", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", sans-serif;
   padding: 0 15px;
-  color: #bdbdbd;
+  color: #fff;
   outline: none;
   border: 1px solid color-border;
   border-radius: 3px 3px 0 0;
@@ -999,7 +999,7 @@ a.article-title:hover {
 .archive-article-title {
   text-decoration: none;
   font-weight: bold;
-  color: #bdbdbd;
+  color: #fff;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -ms-transition: color 0.2s;
@@ -1068,7 +1068,7 @@ a.article-title:hover {
   }
 }
 #page-nav .current {
-  color: #bdbdbd;
+  color: #fff;
   font-weight: bold;
 }
 #page-nav .space {
