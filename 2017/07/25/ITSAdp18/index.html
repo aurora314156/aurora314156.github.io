@@ -11,7 +11,7 @@
 <meta property="og:title" content="ITSAdp18">
 <meta property="og:url" content="http://yoursite.com/2017/07/25/ITSAdp18/index.html">
 <meta property="og:site_name" content="Aurora&#39;s Blog">
-<meta property="og:updated_time" content="2017-07-25T05:54:02.656Z">
+<meta property="og:updated_time" content="2017-07-30T11:34:54.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ITSAdp18">
   
@@ -93,16 +93,19 @@
         <p> <br> <br> <br></p>
 <a id="more"></a>
 <pre><code>問題描述： 
-在沙漠中有一個村落，村落旁邊有一個綠洲，村民所有的水都要從綠洲取得，村長發給每一戶人家一個水桶，以及家中每個人一個水瓢，
+在沙漠中有一個村落，村落旁邊有一個綠洲，村民所有的水都要從綠洲取得，
+村長發給每一戶人家一個水桶，以及家中每個人一個水瓢，
 年齡愈大的人拿到的水瓢容積愈大，並且規定每戶人家每天只能只能裝一桶水，取水時必須排隊，
 每個人一次只能舀一瓢水，而且水瓢必須裝滿。今天小明全家出動，要去裝水，
-知道水桶可裝 M 公升的水， 請幫小明算算全家人如何在排最少舀水幾次能將水桶裝滿，而綠洲的水相當珍貴，所以不能讓水滿出水桶。
+知道水桶可裝 M 公升的水， 請幫小明算算全家人如何在排最少舀水幾次能將水桶裝滿，
+而綠洲的水相當珍貴，所以不能讓水滿出水桶。
 
 
 輸入說明： 
 第一行有一個正整數 N ，表示共有 N 筆測試資料，之後有 N 行，
 每行為一筆測試資料。每筆測資第一個數為一個正整數 K (1 &lt;= K &lt;= 100) ，代表家中人口數 ( 即水瓢的數量 ) ，
-之後有 K +1 個正整數，前面 K 個數字分別代表各水瓢的容積，最後一個則代表水桶的容積 (M &lt;= 10000)，每個整數間均有一個空格隔開。
+之後有 K +1 個正整數，前面 K 個數字分別代表各水瓢的容積，最後一個則代表水桶的容積 (M &lt;= 10000)，
+每個整數間均有一個空格隔開。
 
 
 輸出說明： 每筆測試資料 輸出最少舀水次數 於一行，若無法在不溢出的情況下 將水桶裝滿則輸出 0 。
@@ -120,57 +123,15 @@ Sample Output
 
 
 解法:動態規劃
-
-
-
-
-
-import java.util.Scanner;
-
-public class ITSA_C_DP18 {
-
- public static void main(String[] args) {
-  // TODO Auto-generated method stub
-  Scanner sc = new Scanner(System.in);
-
-  int N = sc.nextInt();
-
-  for (int n = 0; n &lt; N; n++) {
-
-   int K = sc.nextInt();
-
-   int volume[] = new int[K + 1];
-
-   for (int v = 1; v &lt;= K; v++)
-    volume[v] = sc.nextInt();
-
-   int M = sc.nextInt();
-
-   int dp[] = new int[M + 1];
-
-   for (int d = 1; d &lt;= M; d++)
-    dp[d] = Integer.MAX_VALUE;
-
-   dp[0] = 0;
-
-   for (int i = 1; i &lt;= K; i++)
-    for (int j = volume[i]; j &lt;= M; j++) {
-     if (dp[j - volume[i]] != Integer.MAX_VALUE &amp;&amp; dp[j - volume[i]] + 1 &lt; dp[j])
-      dp[j] = dp[j - volume[i]] + 1;
-    }
-
-   System.out.println(dp[M] == Integer.MAX_VALUE ? 0 : dp[M]);
-
-  }
-  sc.close();
- }
-}
-</code></pre><p><br></p>
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">import java.util.Scanner;</div><div class="line"></div><div class="line">public class ITSA_C_DP18 &#123;</div><div class="line"></div><div class="line"> public static void main(String[] args) &#123;</div><div class="line">  // TODO Auto-generated method stub</div><div class="line">  Scanner sc = new Scanner(System.in);</div><div class="line"></div><div class="line">  int N = sc.nextInt();</div><div class="line"></div><div class="line">  for (int n = 0; n &lt; N; n++) &#123;</div><div class="line"></div><div class="line">   int K = sc.nextInt();</div><div class="line"></div><div class="line">   int volume[] = new int[K + 1];</div><div class="line"></div><div class="line">   for (int v = 1; v &lt;= K; v++)</div><div class="line">	volume[v] = sc.nextInt();</div><div class="line"></div><div class="line">   int M = sc.nextInt();</div><div class="line"></div><div class="line">   int dp[] = new int[M + 1];</div><div class="line"></div><div class="line">   for (int d = 1; d &lt;= M; d++)</div><div class="line">	dp[d] = Integer.MAX_VALUE;</div><div class="line"></div><div class="line">   dp[0] = 0;</div><div class="line">   </div><div class="line">   for (int i = 1; i &lt;= K; i++)</div><div class="line">	for (int j = volume[i]; j &lt;= M; j++) &#123;</div><div class="line">	 if (dp[j - volume[i]] != Integer.MAX_VALUE &amp;&amp; dp[j - volume[i]] + 1 &lt; dp[j])</div><div class="line">	  dp[j] = dp[j - volume[i]] + 1;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">   System.out.println(dp[M] == Integer.MAX_VALUE ? 0 : dp[M]);</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  sc.close();</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><br></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/25/ITSAdp18/" data-id="cj5j7fcob000570icmeo49qa5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/25/ITSAdp18/" data-id="cj5qnv3yy0005p8icor1ldsd9" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2017/07/25/ITSAdp18/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Other/">Other</a></li></ul>
@@ -201,6 +162,12 @@ public class ITSA_C_DP18 {
   
 </article>
 
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -292,6 +259,20 @@ public class ITSA_C_DP18 {
   
 </nav>
     
+<script>
+  var disqus_shortname = 'aurora314156';
+  
+  var disqus_url = 'http://yoursite.com/2017/07/25/ITSAdp18/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
