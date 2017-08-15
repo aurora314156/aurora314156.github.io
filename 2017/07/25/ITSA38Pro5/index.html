@@ -11,7 +11,7 @@
 <meta property="og:title" content="ITSA38Pro5">
 <meta property="og:url" content="http://yoursite.com/2017/07/25/ITSA38Pro5/index.html">
 <meta property="og:site_name" content="Aurora&#39;s Blog">
-<meta property="og:updated_time" content="2017-07-25T06:06:53.299Z">
+<meta property="og:updated_time" content="2017-08-14T03:05:28.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ITSA38Pro5">
   
@@ -92,56 +92,63 @@
       
         <p> <br> <br> <br></p>
 <a id="more"></a>
-<p>※使用 hashMap不重複計數的特性</p>
-<pre><code>import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HashMap</div></pre></td></tr></table></figure>
+<p><br></p>
+<pre><code class="cpp">
+<span class="keyword">import</span> java.util.HashMap;
+<span class="keyword">import</span> java.util.Map;
+<span class="keyword">import</span> java.util.Scanner;
 
-public class Main {
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> {</span>
 
- public static void main(String[] args) {
+     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
 
-  Scanner sc=  new Scanner(System.in);
+          Scanner sc=  <span class="keyword">new</span> Scanner(System.in);
 
-  int count = 0;
+          <span class="keyword">int</span> count = <span class="number">0</span>;
 
-  count  = Integer.parseInt(sc.nextLine().trim());
+          count  = Integer.parseInt(sc.nextLine().trim());
 
-  while(count--&gt;0)
-  {
-   int a = sc.nextInt();
+          <span class="keyword">while</span>(count--&gt;<span class="number">0</span>)
+          {
+               <span class="keyword">int</span> a = sc.nextInt();
 
-   int c = sc.nextInt();
+               <span class="keyword">int</span> c = sc.nextInt();
 
-   int m = sc.nextInt();
+               <span class="keyword">int</span> m = sc.nextInt();
 
-   int x = sc.nextInt();
+               <span class="keyword">int</span> x = sc.nextInt();
 
-   int counter = 0,ans = 0;
+               <span class="keyword">int</span> counter = <span class="number">0</span>,ans = <span class="number">0</span>;
 
-   HashMap&lt;Integer,Integer&gt;  hm = new HashMap&lt;Integer,Integer&gt;();
+               HashMap&lt;Integer,Integer&gt;  hm = <span class="keyword">new</span> HashMap&lt;Integer,Integer&gt;();
 
-   while(counter&lt;m)
-   {
-    counter++;
+               <span class="keyword">while</span>(counter&lt;m)
+               {
+                    counter++;
 
-    x = (a * x + c) % m ;
+                    x = (a * x + c) % m ;
 
-    if(!hm.containsKey(x))
-     hm.put(x, 1);
-    else
-    {
-     int temp = hm.get(x);
-     temp++;
-     hm.put(x, temp);
+                    <span class="keyword">if</span>(!hm.containsKey(x))
+                     hm.put(x, <span class="number">1</span>);
+
+                    <span class="keyword">else</span>
+                    {
+                         <span class="keyword">int</span> temp = hm.get(x);
+                         temp++;
+                         hm.put(x, temp);
+                    }
+                }
+            }
+        }
     }
-   }
-</code></pre><p><br></p>
+</code></pre>
+<p><br></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/25/ITSA38Pro5/" data-id="cj5qpg7hh00064sicnh1o7gbw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/25/ITSA38Pro5/" data-id="cj5v51w550005dsics9wxv2u0" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/07/25/ITSA38Pro5/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -188,7 +195,7 @@ public class Main {
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Leetcode/">Leetcode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UVA/">UVA</a><span class="category-list-count">80</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZeroJudge/">ZeroJudge</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Leetcode/">Leetcode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UVA/">UVA</a><span class="category-list-count">80</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZeroJudge/">ZeroJudge</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -229,7 +236,7 @@ public class Main {
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">88</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/">Other</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UVA/">UVA</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroJudge/">ZeroJudge</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">87</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/">Other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UVA/">UVA</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroJudge/">ZeroJudge</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

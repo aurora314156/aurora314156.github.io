@@ -11,7 +11,7 @@
 <meta property="og:title" content="ITSAdp18">
 <meta property="og:url" content="http://yoursite.com/2017/07/25/ITSAdp18/index.html">
 <meta property="og:site_name" content="Aurora&#39;s Blog">
-<meta property="og:updated_time" content="2017-07-30T11:34:54.716Z">
+<meta property="og:updated_time" content="2017-08-14T03:05:37.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ITSAdp18">
   
@@ -92,44 +92,25 @@
       
         <p> <br> <br> <br></p>
 <a id="more"></a>
-<pre><code>問題描述： 
-在沙漠中有一個村落，村落旁邊有一個綠洲，村民所有的水都要從綠洲取得，
-村長發給每一戶人家一個水桶，以及家中每個人一個水瓢，
-年齡愈大的人拿到的水瓢容積愈大，並且規定每戶人家每天只能只能裝一桶水，取水時必須排隊，
-每個人一次只能舀一瓢水，而且水瓢必須裝滿。今天小明全家出動，要去裝水，
-知道水桶可裝 M 公升的水， 請幫小明算算全家人如何在排最少舀水幾次能將水桶裝滿，
-而綠洲的水相當珍貴，所以不能讓水滿出水桶。
-
-
-輸入說明： 
-第一行有一個正整數 N ，表示共有 N 筆測試資料，之後有 N 行，
-每行為一筆測試資料。每筆測資第一個數為一個正整數 K (1 &lt;= K &lt;= 100) ，代表家中人口數 ( 即水瓢的數量 ) ，
-之後有 K +1 個正整數，前面 K 個數字分別代表各水瓢的容積，最後一個則代表水桶的容積 (M &lt;= 10000)，
-每個整數間均有一個空格隔開。
-
-
-輸出說明： 每筆測試資料 輸出最少舀水次數 於一行，若無法在不溢出的情況下 將水桶裝滿則輸出 0 。
-
-
-
-Sample Input
-2
-3 2 3 4 5
-4 2 4 6 8 21
-
-Sample Output
-2
-0
-
-
-解法:動態規劃
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">import java.util.Scanner;</div><div class="line"></div><div class="line">public class ITSA_C_DP18 &#123;</div><div class="line"></div><div class="line"> public static void main(String[] args) &#123;</div><div class="line">  // TODO Auto-generated method stub</div><div class="line">  Scanner sc = new Scanner(System.in);</div><div class="line"></div><div class="line">  int N = sc.nextInt();</div><div class="line"></div><div class="line">  for (int n = 0; n &lt; N; n++) &#123;</div><div class="line"></div><div class="line">   int K = sc.nextInt();</div><div class="line"></div><div class="line">   int volume[] = new int[K + 1];</div><div class="line"></div><div class="line">   for (int v = 1; v &lt;= K; v++)</div><div class="line">	volume[v] = sc.nextInt();</div><div class="line"></div><div class="line">   int M = sc.nextInt();</div><div class="line"></div><div class="line">   int dp[] = new int[M + 1];</div><div class="line"></div><div class="line">   for (int d = 1; d &lt;= M; d++)</div><div class="line">	dp[d] = Integer.MAX_VALUE;</div><div class="line"></div><div class="line">   dp[0] = 0;</div><div class="line">   </div><div class="line">   for (int i = 1; i &lt;= K; i++)</div><div class="line">	for (int j = volume[i]; j &lt;= M; j++) &#123;</div><div class="line">	 if (dp[j - volume[i]] != Integer.MAX_VALUE &amp;&amp; dp[j - volume[i]] + 1 &lt; dp[j])</div><div class="line">	  dp[j] = dp[j - volume[i]] + 1;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">   System.out.println(dp[M] == Integer.MAX_VALUE ? 0 : dp[M]);</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  sc.close();</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Difficult: Difficult</div><div class="line">Algorithm: Dp</div><div class="line">Space: O(n) </div><div class="line">Time: O(n^<span class="number">2</span>)</div></pre></td></tr></table></figure>
+<p><br><br></p>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在沙漠中有一個村落，村落旁邊有一個綠洲，村民所有的水都要從綠洲取得，</div><div class="line">村長發給每一戶人家一個水桶，以及家中每個人一個水瓢，</div><div class="line">年齡愈大的人拿到的水瓢容積愈大，並且規定每戶人家每天只能只能裝一桶水，取水時必須排隊，</div><div class="line">每個人一次只能舀一瓢水，而且水瓢必須裝滿。今天小明全家出動，要去裝水，</div><div class="line">知道水桶可裝 M 公升的水， 請幫小明算算全家人如何在排最少舀水幾次能將水桶裝滿，</div><div class="line">而綠洲的水相當珍貴，所以不能讓水滿出水桶。</div></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">第一行有一個正整數 N ，表示共有 N 筆測試資料，之後有 N 行，</div><div class="line">每行為一筆測試資料。每筆測資第一個數為一個正整數 K (<span class="number">1</span> &lt;= K &lt;= <span class="number">100</span>) ，代表家中人口數 ( 即水瓢的數量 ) ，</div><div class="line">之後有 K +<span class="number">1</span> 個正整數，前面 K 個數字分別代表各水瓢的容積，最後一個則代表水桶的容積 (M &lt;= <span class="number">10000</span>)，</div><div class="line">每個整數間均有一個空格隔開。</div></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">每筆測試資料 輸出最少舀水次數 於一行，若無法在不溢出的情況下 將水桶裝滿則輸出 <span class="number">0</span> 。</div></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div><div class="line"><span class="number">4</span> <span class="number">2</span> <span class="number">4</span> <span class="number">6</span> <span class="number">8</span> <span class="number">21</span></div></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">2</span></div><div class="line"><span class="number">0</span></div></pre></td></tr></table></figure>
+<p><br><br></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ITSA_C_DP18</span> &#123;</span></div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">  <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">  Scanner sc = <span class="keyword">new</span> Scanner(System.in);</div><div class="line"></div><div class="line">  <span class="keyword">int</span> N = sc.nextInt();</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt; N; n++) &#123;</div><div class="line"></div><div class="line">   <span class="keyword">int</span> K = sc.nextInt();</div><div class="line"></div><div class="line">   <span class="keyword">int</span> volume[] = <span class="keyword">new</span> <span class="keyword">int</span>[K + <span class="number">1</span>];</div><div class="line"></div><div class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">1</span>; v &lt;= K; v++)</div><div class="line">	volume[v] = sc.nextInt();</div><div class="line"></div><div class="line">   <span class="keyword">int</span> M = sc.nextInt();</div><div class="line"></div><div class="line">   <span class="keyword">int</span> dp[] = <span class="keyword">new</span> <span class="keyword">int</span>[M + <span class="number">1</span>];</div><div class="line"></div><div class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> d = <span class="number">1</span>; d &lt;= M; d++)</div><div class="line">	dp[d] = Integer.MAX_VALUE;</div><div class="line"></div><div class="line">   dp[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">   </div><div class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= K; i++)</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = volume[i]; j &lt;= M; j++) &#123;</div><div class="line">	 <span class="keyword">if</span> (dp[j - volume[i]] != Integer.MAX_VALUE &amp;&amp; dp[j - volume[i]] + <span class="number">1</span> &lt; dp[j])</div><div class="line">	  dp[j] = dp[j - volume[i]] + <span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">   System.out.println(dp[M] == Integer.MAX_VALUE ? <span class="number">0</span> : dp[M]);</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  sc.close();</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><br></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/25/ITSAdp18/" data-id="cj5qpg7hm00074sic81vm74q4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/25/ITSAdp18/" data-id="cj5v51w4n0002dsicay8543a8" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/07/25/ITSAdp18/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -142,11 +123,11 @@ Sample Output
     
 <nav id="article-nav">
   
-    <a href="/2017/07/25/HanXin/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/07/25/LightProb/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          HanXin
+          LightProb
         
       </div>
     </a>
@@ -176,7 +157,7 @@ Sample Output
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Leetcode/">Leetcode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UVA/">UVA</a><span class="category-list-count">80</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZeroJudge/">ZeroJudge</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Leetcode/">Leetcode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UVA/">UVA</a><span class="category-list-count">80</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZeroJudge/">ZeroJudge</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -217,7 +198,7 @@ Sample Output
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">88</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/">Other</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UVA/">UVA</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroJudge/">ZeroJudge</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">87</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/">Other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UVA/">UVA</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroJudge/">ZeroJudge</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
